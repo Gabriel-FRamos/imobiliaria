@@ -20,7 +20,7 @@ public class ControleVenda{
     }
     public void serializaVenda(){
         try{   
-            FileOutputStream objFileOS = new FileOutputStream("contratados.dat");
+            FileOutputStream objFileOS = new FileOutputStream("vendas.dat");
             ObjectOutputStream objOS = new ObjectOutputStream(objFileOS);
             objOS.writeObject(imoveisVendidos);
             objOS.flush();
@@ -31,9 +31,9 @@ public class ControleVenda{
     }
    public void recuperaVenda(){
         try{
-            File objFile = new File("contratados.dat");
+            File objFile = new File("vendas.dat");
             if (objFile.exists()) {
-                FileInputStream objFileIS = new FileInputStream("contratados.dat");
+                FileInputStream objFileIS = new FileInputStream("vendas.dat");
                 ObjectInputStream objIS = new ObjectInputStream(objFileIS);
                 imoveisVendidos = (ArrayList<Venda>) objIS.readObject();            
                 objIS.close();
