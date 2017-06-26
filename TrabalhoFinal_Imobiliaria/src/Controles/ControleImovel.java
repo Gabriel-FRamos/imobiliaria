@@ -1,8 +1,8 @@
 package Controles;
 
 import Entidades.Corretor.Contratado;
-import Entidades.Venda;
-import Limites.LimiteVenda;
+import Entidades.Imovel;
+import Limites.LimiteImovel;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -10,32 +10,32 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class ControleVenda{
-    LimiteVenda limVenda;
-    private ArrayList <Venda> imoveisVendidos = new ArrayList();
+public class ControleImovel {
+    LimiteImovel limImovel;
+    private ArrayList <Imovel> listaImoveis = new ArrayList();
     
-    public ControleVenda(){
-        recuperaVenda();
-        limVenda = new LimiteVenda(this);
+    public ControleImovel(){
+        recuperaImovel();
+        limImovel = new LimiteImovel(this);
     }
-    public void serializaVenda(){
+    public void serializaImovel(){
         try{   
-            FileOutputStream objFileOS = new FileOutputStream("contratados.dat");
+            FileOutputStream objFileOS = new FileOutputStream("imoveis.dat");
             ObjectOutputStream objOS = new ObjectOutputStream(objFileOS);
-            objOS.writeObject(imoveisVendidos);
+            objOS.writeObject(listaImoveis);
             objOS.flush();
             objOS.close();
         }catch(Exception e){
             System.out.println("Problema de arquivo escrita");
         }  
     }
-   public void recuperaVenda(){
+   public void recuperaImovel(){
         try{
-            File objFile = new File("contratados.dat");
+            File objFile = new File("imoveis.dat");
             if (objFile.exists()) {
-                FileInputStream objFileIS = new FileInputStream("contratados.dat");
+                FileInputStream objFileIS = new FileInputStream("imoveis.dat");
                 ObjectInputStream objIS = new ObjectInputStream(objFileIS);
-                imoveisVendidos = (ArrayList<Venda>) objIS.readObject();            
+                listaImoveis = (ArrayList<Imovel>) objIS.readObject();            
                 objIS.close();
             }    
         }catch(Exception e){
@@ -43,5 +43,4 @@ public class ControleVenda{
             System.out.println(e.getMessage());
         }
     }
-    
 }

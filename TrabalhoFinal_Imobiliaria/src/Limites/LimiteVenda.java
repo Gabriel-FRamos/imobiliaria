@@ -1,5 +1,11 @@
 package Limites;
 
-public class LimiteVenda {
+import Controles.ControleVenda;
 
+public class LimiteVenda {
+    ControleVenda ctrlVenda;
+    
+    public LimiteVenda(ControleVenda a){
+        ctrlVenda = a;
+    }
 }
